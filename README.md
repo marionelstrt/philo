@@ -6,7 +6,7 @@ Chaque philosophe doit penser, manger et dormir, en accédant à deux fourchette
 
 Ce projet m’a permis de développer une compréhension concrète des threads, des verrous (mutex) et des problèmes classiques de la concurrence.
 
-How to use
+**How to use**
 
 Lancer le programme avec les arguments suivants :
 
