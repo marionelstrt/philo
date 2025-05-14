@@ -1,4 +1,4 @@
-Competences acquises
+**Competences acquises**
 
 Ce projet m’a permis d’apprendre les bases de la programmation concurrentielle. On utilise des threads pour exécuter plusieurs entités (les philosophes) en parallèle, ainsi que des mutex pour gérer l’accès aux ressources partagées (les fourchettes), et ainsi éviter les conflits et les comportements indéterminés.
 
@@ -12,7 +12,7 @@ Ce projet m’a permis de développer une compréhension concrète des threads, 
 
 Lancer le programme avec les arguments suivants :
 
-./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]
+./philo number_of_philosophers time_to_die time_to_eat time_to_sleep (number_of_times_each_philosopher_must_eat)
 
 number_of_philosophers : nombre de philosophes (et donc de fourchettes)
 
