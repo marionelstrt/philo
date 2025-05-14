@@ -1,3 +1,5 @@
+Competences acquises
+
 Ce projet m’a permis d’apprendre les bases de la programmation concurrentielle. On utilise des threads pour exécuter plusieurs entités (les philosophes) en parallèle, ainsi que des mutex pour gérer l’accès aux ressources partagées (les fourchettes), et ainsi éviter les conflits et les comportements indéterminés.
 
 L’objectif était de simuler le problème des philosophes, en evitant les data race, en prevenant les deadlocks. 
