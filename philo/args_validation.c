@@ -6,7 +6,7 @@
 /*   By: mtarento <mtarento@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 21:06:36 by mtarento          #+#    #+#             */
-/*   Updated: 2025/03/06 23:36:56 by mtarento         ###   ########.fr       */
+/*   Updated: 2025/03/07 18:52:51 by mtarento         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	check_args(int ac, char *av[])
 	if (ft_atoi(av[1]) <= 0 || ft_atoi(av[2]) <= 0
 		|| ft_atoi(av[3]) <= 0 || ft_atoi(av[4]) <= 0)
 	{
-		printf("args at zero");
+		printf("args at zero or inferior\n");
 		return (1);
 	}
 	return (0);

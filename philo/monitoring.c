@@ -6,7 +6,7 @@
 /*   By: mtarento <mtarento@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 04:43:09 by mtarento          #+#    #+#             */
-/*   Updated: 2025/03/06 23:47:02 by mtarento         ###   ########.fr       */
+/*   Updated: 2025/03/07 06:18:10 by mtarento         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ void	ft_grave(t_table *table, int id)
 	pthread_mutex_lock(&table->is_dead);
 	table->dead = 1;
 	pthread_mutex_unlock(&table->is_dead);
-	print_status(&table->philos[id], DEAD);
+	pthread_mutex_lock(&table->can_print);
+	printf("%ld Philosopher %d has died\n",
+		get_time() - table->start_time, id);
+	pthread_mutex_unlock(&table->can_print);
 }
 
 int	check_philosopher_death(t_table *table)
@@ -94,7 +97,6 @@ void	*monitor_routine(void *arg)
 		pthread_mutex_unlock(&table->is_dead);
 		if (check_philosopher_death(table) || are_you_done_yet(table))
 			return (NULL);
-		ft_usleep(100);
 	}
 	return (NULL);
 }

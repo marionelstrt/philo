@@ -6,27 +6,24 @@
 /*   By: mtarento <mtarento@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 00:44:06 by mtarento          #+#    #+#             */
-/*   Updated: 2025/03/07 00:38:14 by mtarento         ###   ########.fr       */
+/*   Updated: 2025/03/07 20:31:59 by mtarento         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_table	init_table(int ac, char *av[])
+void	init_table(t_table *table, int ac, char *av[])
 {
-	t_table	table;	
-
-	table.num_philos = ft_atoi(av[1]);
-	table.time_to_die = ft_atoi(av[2]);
-	table.time_to_eat = ft_atoi(av[3]);
-	table.time_to_sleep = ft_atoi(av[4]);
+	table->num_philos = ft_atoi(av[1]);
+	table->time_to_die = ft_atoi(av[2]);
+	table->time_to_eat = ft_atoi(av[3]);
+	table->time_to_sleep = ft_atoi(av[4]);
 	if (ac == 6)
-		table.must_eat = ft_atoi(av[5]);
+		table->must_eat = ft_atoi(av[5]);
 	else
-		table.must_eat = -1;
-	table.start_time = get_time();
-	table.dead = 0;
-	return (table);
+		table->must_eat = -1;
+	table->start_time = get_time();
+	table->dead = 0;
 }
 
 void	init_mutex(t_table *table)
@@ -86,6 +83,7 @@ void	create_threads(t_table *table)
 			write(1, "failed creating thread\n", 23);
 			return ;
 		}
+		usleep(100);
 		i++;
 	}
 	start_monitoring(table);
@@ -101,12 +99,10 @@ void	create_threads(t_table *table)
 int	main(int ac, char *av[])
 {
 	long	n;
-	t_table	table;
+	t_table	*table;
 
 	if (check_args(ac, av))
-	{
 		return (1);
-	}
 	if (ft_atoi(av[1]) == 1)
 	{
 		printf("0 Philosopher 0 has taken a fork\n");
@@ -115,9 +111,11 @@ int	main(int ac, char *av[])
 		printf("%ld Philosopher 0 has died \n", get_time() - n);
 		return (0);
 	}
-	table = init_table(ac, av);
-	init_mutex(&table);
-	create_threads(&table);
-	destroy_mutex(&table);
+	table = malloc(sizeof(t_table));
+	init_table(table, ac, av);
+	init_mutex(table);
+	create_threads(table);
+	destroy_mutex(table);
+	free(table);
 	return (0);
 }

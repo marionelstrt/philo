@@ -6,7 +6,7 @@
 /*   By: mtarento <mtarento@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 00:59:30 by mtarento          #+#    #+#             */
-/*   Updated: 2025/03/06 23:36:20 by mtarento         ###   ########.fr       */
+/*   Updated: 2025/03/07 20:31:10 by mtarento         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	ft_atoi(char *str)
 
 void	print_status(t_philo *philo, t_action action)
 {
-	long	timestamp;	
+	long	time;	
 
 	pthread_mutex_lock(&philo->table->is_dead);
 	if (philo->table->dead && action != DEAD)
@@ -59,17 +59,17 @@ void	print_status(t_philo *philo, t_action action)
 	}
 	pthread_mutex_unlock(&philo->table->is_dead);
 	pthread_mutex_lock(&philo->table->can_print);
-	timestamp = get_time() - philo->table->start_time;
+	time = get_time() - philo->table->start_time;
 	if (action == TAKEN_FORK)
-		printf("%ld Philosopher %d has taken a fork\n", timestamp, philo->id);
+		printf("%ld Philosopher %d has taken a fork\n", time, philo->id);
 	else if (action == EATING)
-		printf("%ld Philosopher %d is eating\n", timestamp, philo->id);
+		printf("%ld Philosopher %d is eating\n", time, philo->id);
 	else if (action == SLEEPING)
-		printf("%ld Philosopher %d is sleeping\n", timestamp, philo->id);
+		printf("%ld Philosopher %d is sleeping\n", time, philo->id);
 	else if (action == THINKING)
-		printf("%ld Philosopher %d is thinking\n", timestamp, philo->id);
+		printf("%ld Philosopher %d is thinking\n", time, philo->id);
 	else if (action == DEAD)
-		printf("%ld Philosopher %d has died \n", timestamp, philo->id);
+		printf("%ld Philosopher %d has died \n", time, philo->id);
 	pthread_mutex_unlock(&philo->table->can_print);
 }
 

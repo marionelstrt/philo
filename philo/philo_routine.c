@@ -6,7 +6,7 @@
 /*   By: mtarento <mtarento@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 21:34:03 by mtarento          #+#    #+#             */
-/*   Updated: 2025/03/06 23:35:34 by mtarento         ###   ########.fr       */
+/*   Updated: 2025/03/07 20:32:51 by mtarento         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	take_forks(t_philo *philo)
 {
 	if (philo->id % 2 == 0)
 	{
-		ft_usleep(100);
+		if (philo->table->num_philos > 4)
+			ft_usleep(100);
 		pthread_mutex_lock(philo->left_fork);
 		print_status(philo, TAKEN_FORK);
 		pthread_mutex_lock(philo->right_fork);
